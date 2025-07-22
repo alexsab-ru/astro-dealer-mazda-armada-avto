@@ -1,0 +1,111 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import settings from '@/data/settings.json';
+import Banner from '@/components/Banner/Banner.astro';
+import InfoSectionWithImage from '@/components/InfoSectionWithImage/InfoSectionWithImage.astro';
+const { brand, legal_city_where } = settings;
+const banner = {
+	"show": true,
+	"type": "",
+	"view": "link",
+	"imageUrl": "https://cdn.alexsab.ru/pages/mazda/security_systems/banner_desktop.webp",
+	"title": "<nav class=\"mb-5 sm:mb-10\"><ol class=\"flex items-center flex-nowrap whitespace-nowrap gap-1 font-normal text-base\"><li class=\"!m-0 flex items-center flex-nowrap gap-1\"><a href=\"/\" class=\"!text-xs sm:!text-sm !m-0 !leading-none !no-underline font-semibold hover:opacity-80 !text-white\">Главная</a><span class=\"text-xs !leading-none\">&gt;</span></li><li class=\"!m-0 flex items-center flex-nowrap gap-1 truncate\"><span class=\"text-xs sm:text-sm !leading-none opacity-80 truncate\">Системы безопасности</span></li></ol></nav><h1>Системы безопасности</h1>",
+}
+---
+
+<Layout title={`Системы безопасности`} description={`Создавая свои автомобили все более быстрыми и мощными, мы прикладываем огромные усилия и к улучшению показателей их безопасности`} image="https://cdn.alexsab.ru/pages/mazda/security_systems/banner_desktop.webp">
+	<Banner banners={[banner]} />
+
+	<section class="!pb-0">
+		<div class="container">
+			<p>Создавая свои автомобили все более быстрыми и мощными, мы прикладываем огромные усилия и к улучшению показателей их безопасности. Мы стремимся предвосхитить любую опасность, которая потенциально может возникнуть на дороге. Чтобы Mazda приносила вам только наслаждение в дороге, что бы не происходило вокруг.</p>
+		</div>
+	</section>
+
+	<section class="!pb-0 !pt-0">
+		<div class="container">
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/1.webp',
+			}}>
+				<h3 class="font-bold mb-10">Система распознавания дорожных знаков</h3>
+				<div class="space-y-6 mb-10">
+                    <p>Система распознавания дорожных знаков (TSR) видит даже те дорожные знаки, что скрыты от глаз водителя, причем распознает не только постоянные знаки, но и временные, и даже знаки, нанесенные на асфальт. TSR выводит информацию на проекционный дисплей, а в случае несоблюдения требований знаков подает звуковое и визуальное оповещение.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/2.webp',
+			}}>
+				<h3 class="font-bold mb-10">Система безопасного торможения</h3>
+				<div class="space-y-6">
+                    <p>Система безопасного торможения в городе SCBS (Smart City Brake Support) специально разработана для городских условий. Она минимизирует риск столкновений, постоянно контролируя расстояние до впереди идущего автомобиля и скорость сближения с ним. Если возрастает вероятность столкновения, то система задействует тормозные механизмы.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/3.webp',
+			}}>
+				<h3 class="font-bold mb-10">Система мониторинга мертвых зон</h3>
+				<div class="space-y-6 mb-10">
+                    <p>Система мониторинга мертвых зон BSM (Blind Spot Мonitoring) помогает водителю контролировать транспортную ситуацию при попытке перестроения. Система выявляет приближающееся сзади транспортное средство, и, в случае необходимости, оповещает водителя световым сигналом на боковом зеркале заднего вида. Как только дорога будет свободна, световой сигнал отключается, позволяя безопасно совершить маневр.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/4.webp',
+			}}>
+				<h3 class="font-bold mb-10">Система кругового обзора</h3>
+				<div class="space-y-6 mb-10">
+					<p>Парковка и маневрирование в ограниченном пространстве становятся такими простыми и безопасными благодаря четырем обзорным камерам и возможности просматривать увеличенное изображение с любой из них.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/5.webp',
+			}}>
+				<h3 class="font-bold mb-10">Система предупреждения о выходе с занимаемой полосы</h3>
+				<div class="space-y-6 mb-10">
+                    <p>Технология Lane-Keep Assist System (LKA) дополняет систему предупреждения об изменении полосы движения Lane Departure Warning System (LDW). Она отслеживает позицию вашего автомобиля относительно дорожной разметки и помогает предотвратить непреднамеренный выезд за пределы полосы: предупреждает водителя звуковым сигналом и вибрацией, а при необходимости подруливает, возвращая автомобиль на полосу.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/6.webp',
+			}}>
+				<h3 class="font-bold mb-10">Адаптивная система освещения</h3>
+				<div class="space-y-6 mb-10">
+                    <p>Адаптивная система освещения с функцией автоматического управления световым потоком (ALH) автоматически снижает яркость только той части светового пучка фар дальнего света, которая может ослепить водителей встречного транспорта, переключает свет фар с дальнего на ближний, а при пересечении перекрестков световые пучки ближнего света фар расширяют освещенную зону с обеих сторон от автомобиля.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/7.webp',
+			}}>
+				<h3 class="font-bold mb-10">Система экстренного реагирования</h3>
+				<div class="space-y-6 mb-10">
+                    <p>ЭРА-ГЛОНАСС – это устройство вызова экстренных оперативных служб нажатием одной кнопки вручную или в автоматическом режиме.</p>
+                    <p>В экстренной ситуации она определяет местоположение автомобиля и передаёт необходимые данные в центр обработки вызовов. В соответствии с полученной информацией диспетчер центра организует выезд бригады скорой медицинской помощи или спасателей на место происшествия.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/8.webp',
+			}}>
+				<h3 class="font-bold mb-10">Адаптивный круиз-контроль</h3>
+				<div class="space-y-6 mb-10">
+                    <p>Адаптивный круиз-контроль (Mazda Radar Cruise Control, MRCC) поддерживает заданную скорость движения и при появлении впереди более медленного транспортного средства самостоятельно замедляет ваш автомобиль для соблюдения безопасной дистанции. Если препятствие исчезает или водитель сам меняет полосу движения, скорость автоматически восстанавливается до ранее заданного значения.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/9.webp',
+			}}>
+				<h3 class="font-bold mb-10">Система предупреждения о приближении объекта сзади</h3>
+				<div class="space-y-6 mb-10">
+                    <p>Система предупреждения о приближении объекта сзади в поперечном направлении (Rear Cross Traffic Alert, RCTA) при движении задним ходом обнаруживает транспортные средства, приближающиеся с обеих сторон. RCTA включается автоматически при включении заднего хода. Система предупреждает об опасности включая индикатор на наружном зеркале и подавая звуковой сигнал.</p>
+				</div>
+			</InfoSectionWithImage>
+			<InfoSectionWithImage image={{
+				desktop: 'https://cdn.alexsab.ru/pages/mazda/security_systems/10.webp',
+			}}>
+				<h3 class="font-bold mb-10">Система помощи при движении в транспортном потоке</h3>
+				<div class="space-y-6 mb-10">
+                    <p>Система помощи при движении в транспортном потоке (Cruising&Traffic Support, CTS) призвана снизить утомляемость водителя в пробках. CTS автоматически (без нажатия педалей газа и тормоза) поддерживает дистанцию до автомобиля впереди, а также помогает удерживать ваш Mazda в полосе, следуя линиям разметки или траектории движущегося впереди автомобиля.</p>
+				</div>
+			</InfoSectionWithImage>
+		</div>
+	</section>
+
+</Layout>

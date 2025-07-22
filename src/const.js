@@ -26,12 +26,37 @@ export const LINKS_MENU = [
 		name: 'Модели',
 		children
 	},
+	{
+		url: 'javascript:void(0)',
+		name: 'Покупателям',
+		children: [
+			{url: 'special-offers/', name: 'Спецпредложения'},
+			{url: 'test-drive/', name: 'Запись на тест-драйв'},
+			{url: 'mazda-garant/', name: 'MAZDA ГАРАНТ'},
+			
+		],
+	},
+	{
+		url: 'javascript:void(0)',
+		name: 'Владельцам',
+		children: [
+			{url: 'special-offers/', name: 'Спецпредложения'},
+			{url: 'maintainance/', name: 'Техническое обслуживание'},
+			{url: 'service-request/', name: 'Запись на сервис'},
+		],
+	},
 	// {url: 'trade-in/', name: 'Оценка автомобиля'},
-	{url: 'special-offers/', name: 'Спецпредложения'},
-	{url: 'news/', name: 'Новости'},
-	{url: 'test-drive/', name: 'Запись на тест-драйв'},
-	{url: 'service-request/', name: 'Запись на сервис'},
 	{url: '#services', name: 'Услуги'},
+	{
+		url: 'javascript:void(0)',
+		name: 'МИР MAZDA',
+		children: [
+			{url: 'mazda-history/', name: 'История Mazda'},	
+			{url: 'technology/', name: 'Мультимедиа'},	
+			{url: 'security_systems/', name: 'Системы безопасности'},	
+			{url: 'news/', name: 'Новости'},
+		],
+	},
 	{url: 'contacts/', name: 'Контакты'},
 ];
 
