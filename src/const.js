@@ -43,6 +43,8 @@ export const LINKS_MENU = [
 			{url: 'special-offers/', name: 'Спецпредложения'},
 			{url: 'maintainance/', name: 'Техническое обслуживание'},
 			{url: 'customer-support/', name: 'Поддержка клиентов'},
+			{url: 'reference-guides/', name: 'Справочные руководства'},
+			{url: 'mazda-servis-kontrakt/', name: 'MAZDA СЕРВИС КОНТРАКТ'},
 			{url: 'service-request/', name: 'Запись на сервис'},
 		],
 	},
