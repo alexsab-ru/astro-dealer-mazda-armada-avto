@@ -104,6 +104,7 @@ def format_html_for_mdx(raw_html):
     
     return html_output
 
+
 # Helper function to process description and add it to the body
 def process_description(desc_text):
     """
@@ -213,6 +214,7 @@ def cleanup_unused_thumbs(current_thumbs, thumbs_dir):
         os.remove(thumb)
         print(f"Удалено неиспользуемое превью: {thumb}")
 
+
 # используется в air
 def create_child_element(parent, new_element_name, text):
     # Поиск существующего элемента
@@ -227,6 +229,7 @@ def create_child_element(parent, new_element_name, text):
     # Добавление нового элемента в конец списка дочерних элементов родителя
     parent.append(new_element)
 
+
 # не используется
 def rename_child_element(parent, old_element_name, new_element_name):
     old_element = parent.find(old_element_name)
@@ -239,6 +242,7 @@ def rename_child_element(parent, old_element_name, new_element_name):
         parent.insert(list(parent).index(old_element), new_element)
         parent.remove(old_element)
 
+
 # используется в air
 def update_element_text(parent, element_name, new_text):
     element = parent.find(element_name)
@@ -247,66 +251,6 @@ def update_element_text(parent, element_name, new_text):
     else:
         # Ваш код для обработки случая, когда элемент не найден
         print(f"Элемент '{element_name}' не найден.")
-
-# не используется
-def localize_element_text(element):
-    translations = {
-        # engineType
-        "hybrid": "Гибрид",
-        "petrol": "Бензин",
-        "diesel": "Дизель",
-        "petrol_and_gas": "Бензин и газ",
-        "electric": "Электро",
-
-        # driveType
-        "full_4wd": "Постоянный полный",
-        "optional_4wd": "Подключаемый полный",
-        "front": "Передний",
-        "rear": "Задний",
-
-        # gearboxType
-        "robotized": "Робот",
-        "variator": "Вариатор",
-        "manual": "Механика",
-        "automatic": "Автомат",
-
-        # transmission
-        "RT": "Робот",
-        "CVT": "Вариатор",
-        "MT": "Механика",
-        "AT": "Автомат",
-
-        # ptsType
-        "duplicate": "Дубликат",
-        "original": "Оригинал",
-        "electronic": "Электронный",
-
-        # bodyColor
-        "black": "Черный",
-        "white": "Белый",
-        "blue": "Синий",
-        "gray": "Серый",
-        "silver": "Серебряный",
-        "brown": "Коричневый",
-        "red": "Красный",
-        "grey": "Серый",
-        "azure": "Лазурный",
-        "beige": "Бежевый",
-        "Dark grey": "Темно-серый",
-
-        # steeringWheel
-        "left": "Левый",
-        "right": "Правый",
-        "L": "Левый",
-        "R": "Правый",
-
-        # bodyType
-        "suv": "SUV",
-
-    }
-
-    if element is not None and element.text in translations:
-        element.text = translations[element.text]
 
 
 def join_car_data(car, *elements):
@@ -340,39 +284,45 @@ def convert_to_string(element):
 def avitoColor(color):
     # Обязательно приводим к нижнему регистру, чтобы не было ошибок при сравнении
     mapping = {
-        'бежевый': 'бежевый',
-        'бордовый': 'бордовый',
-        'белый': 'белый',
-        '089/20 белый перламутр': 'белый',
-        '070/20 белый перламутр': 'белый',
         '058/11': 'белый',
+        '070/20 белый перламутр': 'белый',
+        '089/20 белый перламутр': 'белый',
+        '1k0/20 серый': 'серый',
+        '1l1/20': 'серый',
+        '1l1/21 серый хром металл': 'серый',
+        '218/20 черный металлик': 'черный',
+        '218/41 черный': 'черный',
+        'бежевый': 'бежевый',
+        'белый': 'белый',
+        'белый/песочный': 'белый',
+        'белый/черный': 'белый',
+        'бордовый': 'бордовый',
         'голубой': 'голубой',
-        'серо-голубой': 'голубой',
         'желтый': 'желтый',
         'зеленый': 'зеленый',
         'зелёный': 'зеленый',
         'золотой': 'золотой',
         'коричневый': 'коричневый',
         'красный': 'красный',
-        'ярко-алый': 'красный',
         'оранжевый': 'оранжевый',
+        'платиновый графит': 'серый',
         'пурпурный': 'пурпурный',
         'розовый': 'розовый',
-        'серебряный': 'серебряный',
         'серебристый': 'серебряный',
+        'серебряный': 'серебряный',
+        'серо-голубой': 'голубой',
+        'серо-фиолетовый': 'серо-фиолетовый',
         'серый': 'серый',
-        'темно-серый': 'серый',
-        'платиновый графит': 'серый',
-        '1l1/21 серый хром металл': 'серый',
-        '1l1/20': 'серый',
         'синий': 'синий',
+        'темно-серый': 'серый',
         'темно-синий': 'синий',
         'фиолетовый': 'фиолетовый',
-        'серо-фиолетовый': 'серо-фиолетовый',
         'черный': 'черный',
         'чёрный': 'черный',
-        'черный/черный': 'черный',
         'черный/черно-зеленый': 'черный',
+        'черный/черный': 'черный',
+        'черный/светлый': 'черный',
+        'ярко-алый': 'красный',
     }
 
     # Приводим ключ к нижнему регистру для проверки

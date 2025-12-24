@@ -62,6 +62,13 @@ class CarProcessor:
         self._lookup_cache: Dict[Tuple[str, str], Optional[str]] = {}
         self._lookup_base_url = "https://cdn.alexsab.ru/getAutocatalog/index.php"
 
+        # --- Поля, требующие обязательной нормализации значений ---
+        # Документируем: расширяем список по мере появления новых кейсов,
+        # чтобы дальше не искать, где именно нужно приводить данные к эталону.
+        self.normalizable_fields: List[str] = [
+            'mark_id',  # бренды часто приходят в разном регистре — выравниваем сразу
+        ]
+
     def setup_source_config(self):
         """Настройка конфигурации в зависимости от типа источника"""
         configs = {
@@ -164,6 +171,7 @@ class CarProcessor:
                     'engineType': 'engineType',
                     'folder_id': 'model',
                     'gearboxType': 'gearboxType',
+                    'generation': 'generation',
                     'image_tag': 'photo',
                     'image_url_attr': None,
                     'images': 'photos',
@@ -436,6 +444,42 @@ class CarProcessor:
             model_elem = car.find('model')
             if model_elem is not None and model_elem.text:
                 car_data['modification_id'] = model_elem.text.strip()
+
+        # Подготовка цветовых полей (рус/eng) для дальнейшего использования
+        raw_color = car_data.get('color')
+        if raw_color:
+            color_rus = None
+            color_eng = None
+
+            brand_for_color = car_data.get('mark_id')
+            model_for_color = car_data.get('folder_id')
+
+            if brand_for_color and model_for_color:
+                color_entry = get_model_info(
+                    brand_for_color,
+                    model_for_color,
+                    property='color',
+                    color=raw_color,
+                    vin=car_data.get('vin')
+                )
+                if isinstance(color_entry, dict):
+                    color_eng = color_entry.get('id') or color_eng
+                    color_rus = (
+                        color_entry.get('name')
+                        or next(
+                            (n for n in (color_entry.get('names') or []) if n),
+                            None
+                        )
+                    )
+
+            if not color_rus:
+                color_rus = self.localize_value(raw_color)
+
+            if not color_eng:
+                color_eng = process_friendly_url(str(raw_color).strip())
+
+            car_data['color_rus'] = color_rus
+            car_data['color_eng'] = color_eng
         
         return car_data
 
@@ -666,6 +710,29 @@ class CarProcessor:
 
         return car_data
 
+    def normalize_car_fields(self, car_data: Dict[str, any]) -> Dict[str, any]:
+        """
+        Приводит значения заранее оговорённых полей к единообразному виду.
+        Нужна, чтобы фильтры (remove_mark_ids, friendly_url и т.п.) работали стабильно.
+        """
+        for field_name in self.normalizable_fields:
+            if field_name not in car_data:
+                continue
+
+            raw_value = car_data[field_name]
+            if raw_value is None:
+                continue
+
+            normalized_value = str(raw_value).strip()
+
+            if field_name == 'mark_id':
+                # Приводим бренд к заглавной букве
+                normalized_value = normalized_value.title()
+
+            car_data[field_name] = normalized_value
+
+        return car_data
+
     def calculate_max_discount(self, car_data: Dict[str, any]) -> int:
         """Расчёт максимальной скидки в зависимости от типа источника"""
         if self.source_type in ['catalog_vehicles_vehicle', 'vehicles_vehicle', 'data_cars_car']:
@@ -767,7 +834,8 @@ class CarProcessor:
         parts = []
         for field in fields:
             if field in car_data and car_data[field]:
-                parts.append(str(car_data[field]).strip())
+                value = str(car_data[field]).strip()
+                parts.append(value)
         return " ".join(parts)
 
     def process_car(self, car: ET.Element, config: Dict) -> ET.Element:
@@ -778,6 +846,9 @@ class CarProcessor:
         # Обогащаем по внешним ID ДО генерации URL и расчётов
         car_data = self.resolve_external_ids(car_data)
 
+        # Нормализуем заранее выбранные поля (начинаем с mark_id → нижний регистр).
+        car_data = self.normalize_car_fields(car_data)
+
         # Проверяем наличие обязательных полей
         if not car_data.get('vin') or not car_data.get('mark_id') or not car_data.get('folder_id'):
             print(car_data)
@@ -786,8 +857,8 @@ class CarProcessor:
         
         # Создание URL
         friendly_url = process_friendly_url(
-            self.join_car_data_from_dict(car_data, 'mark_id', 'folder_id', 'modification_id',
-                                 'complectation_name', 'color', 'year')
+            self.join_car_data_from_dict(car_data, 'mark_id', 'folder_id', 'generation', 'modification_id',
+                                 'complectation_name', 'color_eng', 'year')
         )
         print(f"\n\n🆔 Уникальный идентификатор: {friendly_url}")
         
