@@ -1,8 +1,8 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import settings from '@/data/site/settings.json';
-import Banner from '@/components/Banner/Banner.astro';
-import BrandHistoryElements from '@/components/BrandHistory/BrandHistoryElements.astro';
+import Banner from '@/blocks/banner/Banner.astro';
+import BrandHistoryElements from '@/blocks/brand-history/BrandHistoryElements.astro';
 const { brand, legal_city_where } = settings;
 const history = [
 	{year: "НАЧАЛО 1920-1931", html: "<strong>ОТ ПРОБКИ К АВТОМОБИЛЯМ</strong><br/><br/><p>В 1920 году г-н Дзудзиро Мацуда создает в Хиросиме (Япония) компанию под названием Toyo Cork Kogyo. Как понятно из названия (cork – пробковое дерево), сначала компания занималась производством пробки. Но вскоре Мацуда запускает производство автомобилей, и в 1931 году появляется название Mazda. Оно созвучно имени «Мацуда», а также имени западноазиатского бога мудрости, ума и гармонии Ахура Мазда.</p>"},
